@@ -1,0 +1,18 @@
+<div class="w3top-nav">
+    <div class="w3top-nav-left">
+        <h1 style="color:white;">Heart Disease Prediction System</h1>
+    </div>
+
+    <div class="w3top-nav-right">
+        <ul>
+            <li><a href="{% url 'accounts:about' %}">About</a></li>
+            
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'accounts:logout' %}" class="btn btn-neutral">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'accounts:register' %}">Signup</a></li>
+                <li><a href="/admin">Admin login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

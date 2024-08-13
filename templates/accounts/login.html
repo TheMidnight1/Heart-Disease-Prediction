@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Login - Heart Disease Prediction{% endblock %}
+
+{% block content %}
+<div class="header-main">
+    {% if user.is_authenticated %}
+        <h2>You are already logged in !!</h2>
+        <button class="btn btn-neutral"><a href="{% url 'accounts:logout' %}">Logout</a></button>
+    {% else %}
+        <h2>Login Now</h2>
+        <div class="header-bottom">
+            <div class="header-right w3agile">
+                <div class="header-left-bottom agileinfo">
+                    <form role="form" action="{% url 'accounts:user_login' %}" method="post">
+                        {% csrf_token %}
+                        <div class="icon1">
+                            <input type="text" name="username" placeholder="Username">
+                        </div>
+                        <div class="icon1">
+                            <input type="password" name="password" placeholder="Password">
+                        </div>
+                        <div class="bottom">
+                            <input type="submit" value="Log in">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

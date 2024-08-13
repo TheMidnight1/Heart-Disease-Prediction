@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}Profile - Heart Disease Prediction{% endblock %}
+
+{% block content %}
+<div class="page-header page-header-small" filter-color="orange" style="max-height: 100px;">
+    <div class="page-header-image" data-parallax="true" style="background-image: url('{% static 'img/image1.jpg' %}');">
+    </div>
+    <div class="container">
+        <div class="content-center">
+            <div class="photo-container">
+                <img src="{{ userprofileinfo.profile_pic.url }}" alt="{{ userprofileinfo.user.username }}'s Profile Picture" />
+            </div>
+            <h3 class="title">{{ userprofileinfo.user.username }}</h3>
+            <p class="h5">{{ userprofileinfo.user.email }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+        <div class="button-container">
+            <i class="fa fa-github"></i>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card-header bg-warning btn-round text-white">Predictions</div>
+    <hr>
+    {% for pred in userprofileinfo.predict.all %}
+        <br>
+        <div class="card card-login" style="width: 100%">
+            <div class="card-header bg-dark text-white" style="height: 50px;"> Prediction: {{ pred.num|safe }}</div>
+            <div class="container">
+                <br>
+                <p>Age: {{ pred.age }}</p>
+                <p>Sex: {{ pred.sex }}</p>
+            </div>
+            <div class="card-footer bg-light">Predicted on {{ pred.predicted_on }}</div>
+        </div>
+        <br>
+    {% endfor %}
+</div>
+{% endblock %}
